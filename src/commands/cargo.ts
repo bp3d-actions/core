@@ -96,7 +96,7 @@ see https://help.github.com/en/articles/software-in-virtual-environments-for-git
                 try {
                     core.info(`Caching \`${program}\` with key ${programKey}`);
                     await cache.saveCache(paths, programKey);
-                } catch (error) {
+                } catch (error: any) {
                     if (error.name === cache.ValidationError.name) {
                         throw error;
                     } else if (error.name === cache.ReserveCacheError.name) {
