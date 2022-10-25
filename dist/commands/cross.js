@@ -60,6 +60,14 @@ class Cross {
         }
     }
     async call(args, options) {
+        if (!options)
+            options = {};
+        if (!options.env) {
+            options.env = {};
+            for (const e in process.env)
+                options.env[e] = process.env[e];
+        }
+        options.env['CARGO_TERM_COLOR'] = 'never';
         return await exec.exec(this.path, args, options);
     }
 }
