@@ -146,7 +146,13 @@ see https://help.github.com/en/articles/software-in-virtual-environments-for-git
         return await this.installCached(program, version);
     }
 
-    public async call(args: string[], options?: {}): Promise<number> {
+    public async call(args: string[], options?: exec.ExecOptions): Promise<number> {
+        if (!options) options = {};
+        if (!options.env) {
+            options.env = {};
+            for (const e in process.env) options.env[e] = process.env[e] as string;
+        }
+        options.env['CARGO_TERM_COLOR'] = 'never';
         return await exec.exec(this.path, args, options);
     }
 }

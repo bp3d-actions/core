@@ -1,7 +1,7 @@
 import * as github from '@actions/github';
+import { GitHub } from '@actions/github/lib/utils'
 
-// `@actions/github` does not re-export `GitHub` type, thanks for nothing.
-type GitHub = any;
+type GitHub = InstanceType<typeof GitHub>;
 
 interface Output {
     title: string;
@@ -31,7 +31,7 @@ export class CheckReporter {
     ): Promise<number> {
         const { owner, repo } = github.context.repo;
 
-        const response = await this.client.checks.create({
+        const response = await this.client.rest.checks.create({
             owner: owner,
             repo: repo,
             name: this.checkName,
@@ -64,7 +64,7 @@ export class CheckReporter {
         const { owner, repo } = github.context.repo;
 
         // TODO: Check for errors
-        await this.client.checks.update({
+        await this.client.rest.checks.update({
             owner: owner,
             repo: repo,
             name: this.checkName,
@@ -82,7 +82,7 @@ export class CheckReporter {
         const { owner, repo } = github.context.repo;
 
         // TODO: Check for errors
-        await this.client.checks.update({
+        await this.client.rest.checks.update({
             owner: owner,
             repo: repo,
             name: this.checkName,

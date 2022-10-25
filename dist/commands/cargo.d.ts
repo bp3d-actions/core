@@ -1,3 +1,4 @@
+import * as exec from '@actions/exec';
 export declare function resolveVersion(crate: string): Promise<string>;
 export declare class Cargo {
     private readonly path;
@@ -6,5 +7,5 @@ export declare class Cargo {
     installCached(program: string, version?: string, primaryKey?: string, restoreKeys?: string[]): Promise<string>;
     install(program: string, version?: string): Promise<string>;
     findOrInstall(program: string, version?: string): Promise<string>;
-    call(args: string[], options?: {}): Promise<number>;
+    call(args: string[], options?: exec.ExecOptions): Promise<number>;
 }

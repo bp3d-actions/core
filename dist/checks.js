@@ -33,7 +33,7 @@ class CheckReporter {
     }
     async startCheck(status) {
         const { owner, repo } = github.context.repo;
-        const response = await this.client.checks.create({
+        const response = await this.client.rest.checks.create({
             owner: owner,
             repo: repo,
             name: this.checkName,
@@ -45,7 +45,7 @@ class CheckReporter {
     }
     async finishCheck(conclusion, output) {
         const { owner, repo } = github.context.repo;
-        await this.client.checks.update({
+        await this.client.rest.checks.update({
             owner: owner,
             repo: repo,
             name: this.checkName,
@@ -59,7 +59,7 @@ class CheckReporter {
     }
     async cancelCheck() {
         const { owner, repo } = github.context.repo;
-        await this.client.checks.update({
+        await this.client.rest.checks.update({
             owner: owner,
             repo: repo,
             name: this.checkName,

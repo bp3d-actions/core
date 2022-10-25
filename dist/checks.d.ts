@@ -1,4 +1,5 @@
-declare type GitHub = any;
+import { GitHub } from '@actions/github/lib/utils';
+declare type GitHub = InstanceType<typeof GitHub>;
 interface Output {
     title: string;
     summary: string;
