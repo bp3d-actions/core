@@ -1,4 +1,4 @@
-declare type Profile = 'minimal' | 'default' | 'full';
+type Profile = 'minimal' | 'default' | 'full';
 export interface ToolchainOptions {
     default?: boolean;
     override?: boolean;

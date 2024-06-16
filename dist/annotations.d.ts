@@ -1,4 +1,4 @@
-export declare type AnnotationLevel = 'notice' | 'warning' | 'failure';
+export type AnnotationLevel = 'notice' | 'warning' | 'failure';
 export interface Annotation {
     path: string;
     start_line: number;
